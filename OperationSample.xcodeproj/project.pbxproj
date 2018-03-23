@@ -7,14 +7,39 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D6A4CB50894511C486F39D3 /* Pods_OperationSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C838801709EC0B04A960D283 /* Pods_OperationSample.framework */; };
+		BF01791E205FB4D90014201A /* OSLoadImageCacheOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF01791D205FB4D90014201A /* OSLoadImageCacheOperation.swift */; };
+		BF15586C202D8B9400FC0106 /* OSImageFiltrationOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF15586B202D8B9400FC0106 /* OSImageFiltrationOperation.swift */; };
+		BF2699CD202AF0BF0021FD86 /* OSImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2699CC202AF0BF0021FD86 /* OSImageTableViewCell.swift */; };
+		BF4810F120565D3800E281DF /* OSParallaxImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4810F020565D3800E281DF /* OSParallaxImageCollectionViewCell.swift */; };
+		BF4810F32057949100E281DF /* OSImageListFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4810F22057949100E281DF /* OSImageListFlowLayout.swift */; };
+		BF4810F52057D84200E281DF /* OSCacheFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4810F42057D84200E281DF /* OSCacheFactory.swift */; };
+		BF4810F7205BA01900E281DF /* OSNetworkImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4810F6205BA01800E281DF /* OSNetworkImage.swift */; };
+		BF4810F9205BABEE00E281DF /* OSImageHTTPSessionOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4810F8205BABEE00E281DF /* OSImageHTTPSessionOperation.swift */; };
 		BF74B9BE201F364400520557 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF74B9BD201F364400520557 /* AppDelegate.swift */; };
 		BF74B9C0201F364400520557 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF74B9BF201F364400520557 /* ViewController.swift */; };
 		BF74B9C3201F364400520557 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF74B9C1201F364400520557 /* Main.storyboard */; };
 		BF74B9C5201F364400520557 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF74B9C4201F364400520557 /* Assets.xcassets */; };
 		BF74B9C8201F364400520557 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF74B9C6201F364400520557 /* LaunchScreen.storyboard */; };
+		BF74B9D0201F421500520557 /* OSUrlSessionOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF74B9CF201F421500520557 /* OSUrlSessionOperation.swift */; };
+		BFBBC8142020577D00FC2ED8 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFBBC8152020577D00FC2ED8 /* AFNetworking.framework */; };
+		BFBBC818202177D700FC2ED8 /* OSBaseAsynchronousOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBBC817202177D700FC2ED8 /* OSBaseAsynchronousOperation.swift */; };
+		BFBBC81A202493DC00FC2ED8 /* OSHTTPSessionOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBBC819202493DC00FC2ED8 /* OSHTTPSessionOperation.swift */; };
+		BFBBC81E20249C0B00FC2ED8 /* AFHTTPSessionManager+DataTask.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBBC81D20249C0B00FC2ED8 /* AFHTTPSessionManager+DataTask.m */; };
+		BFBBC8202024AEAB00FC2ED8 /* OSNetworkingOperationSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBBC81F2024AEAB00FC2ED8 /* OSNetworkingOperationSession.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1C139577E82C60478F1158E2 /* Pods-OperationSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OperationSample.release.xcconfig"; path = "Pods/Target Support Files/Pods-OperationSample/Pods-OperationSample.release.xcconfig"; sourceTree = "<group>"; };
+		4316B78D4A69179555B80FF9 /* Pods-OperationSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OperationSample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OperationSample/Pods-OperationSample.debug.xcconfig"; sourceTree = "<group>"; };
+		BF01791D205FB4D90014201A /* OSLoadImageCacheOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSLoadImageCacheOperation.swift; sourceTree = "<group>"; };
+		BF15586B202D8B9400FC0106 /* OSImageFiltrationOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSImageFiltrationOperation.swift; sourceTree = "<group>"; };
+		BF2699CC202AF0BF0021FD86 /* OSImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSImageTableViewCell.swift; sourceTree = "<group>"; };
+		BF4810F020565D3800E281DF /* OSParallaxImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSParallaxImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		BF4810F22057949100E281DF /* OSImageListFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSImageListFlowLayout.swift; sourceTree = "<group>"; };
+		BF4810F42057D84200E281DF /* OSCacheFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSCacheFactory.swift; sourceTree = "<group>"; };
+		BF4810F6205BA01800E281DF /* OSNetworkImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSNetworkImage.swift; sourceTree = "<group>"; };
+		BF4810F8205BABEE00E281DF /* OSImageHTTPSessionOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSImageHTTPSessionOperation.swift; sourceTree = "<group>"; };
 		BF74B9BA201F364400520557 /* OperationSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OperationSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF74B9BD201F364400520557 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BF74B9BF201F364400520557 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +47,15 @@
 		BF74B9C4201F364400520557 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BF74B9C7201F364400520557 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BF74B9C9201F364400520557 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BF74B9CF201F421500520557 /* OSUrlSessionOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSUrlSessionOperation.swift; sourceTree = "<group>"; };
+		BFBBC8152020577D00FC2ED8 /* AFNetworking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AFNetworking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BFBBC817202177D700FC2ED8 /* OSBaseAsynchronousOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSBaseAsynchronousOperation.swift; sourceTree = "<group>"; };
+		BFBBC819202493DC00FC2ED8 /* OSHTTPSessionOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSHTTPSessionOperation.swift; sourceTree = "<group>"; };
+		BFBBC81B20249C0A00FC2ED8 /* OperationSample-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OperationSample-Bridging-Header.h"; sourceTree = "<group>"; };
+		BFBBC81C20249C0B00FC2ED8 /* AFHTTPSessionManager+DataTask.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AFHTTPSessionManager+DataTask.h"; sourceTree = "<group>"; };
+		BFBBC81D20249C0B00FC2ED8 /* AFHTTPSessionManager+DataTask.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AFHTTPSessionManager+DataTask.m"; sourceTree = "<group>"; };
+		BFBBC81F2024AEAB00FC2ED8 /* OSNetworkingOperationSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSNetworkingOperationSession.swift; sourceTree = "<group>"; };
+		C838801709EC0B04A960D283 /* Pods_OperationSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OperationSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +63,39 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFBBC8142020577D00FC2ED8 /* AFNetworking.framework in Frameworks */,
+				0D6A4CB50894511C486F39D3 /* Pods_OperationSample.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6424FF803CF4FA13F34F489F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BFBBC8152020577D00FC2ED8 /* AFNetworking.framework */,
+				C838801709EC0B04A960D283 /* Pods_OperationSample.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		735F129211CB25A3558BB752 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4316B78D4A69179555B80FF9 /* Pods-OperationSample.debug.xcconfig */,
+				1C139577E82C60478F1158E2 /* Pods-OperationSample.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		BF74B9B1201F364400520557 = {
 			isa = PBXGroup;
 			children = (
 				BF74B9BC201F364400520557 /* OperationSample */,
 				BF74B9BB201F364400520557 /* Products */,
+				735F129211CB25A3558BB752 /* Pods */,
+				6424FF803CF4FA13F34F489F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,10 +112,25 @@
 			children = (
 				BF74B9BD201F364400520557 /* AppDelegate.swift */,
 				BF74B9BF201F364400520557 /* ViewController.swift */,
+				BFBBC81C20249C0B00FC2ED8 /* AFHTTPSessionManager+DataTask.h */,
+				BFBBC81D20249C0B00FC2ED8 /* AFHTTPSessionManager+DataTask.m */,
+				BF74B9CF201F421500520557 /* OSUrlSessionOperation.swift */,
+				BFBBC819202493DC00FC2ED8 /* OSHTTPSessionOperation.swift */,
+				BF4810F8205BABEE00E281DF /* OSImageHTTPSessionOperation.swift */,
+				BFBBC817202177D700FC2ED8 /* OSBaseAsynchronousOperation.swift */,
+				BF15586B202D8B9400FC0106 /* OSImageFiltrationOperation.swift */,
+				BF01791D205FB4D90014201A /* OSLoadImageCacheOperation.swift */,
+				BFBBC81F2024AEAB00FC2ED8 /* OSNetworkingOperationSession.swift */,
+				BF2699CC202AF0BF0021FD86 /* OSImageTableViewCell.swift */,
+				BF4810F020565D3800E281DF /* OSParallaxImageCollectionViewCell.swift */,
+				BF4810F22057949100E281DF /* OSImageListFlowLayout.swift */,
+				BF4810F42057D84200E281DF /* OSCacheFactory.swift */,
+				BF4810F6205BA01800E281DF /* OSNetworkImage.swift */,
 				BF74B9C1201F364400520557 /* Main.storyboard */,
 				BF74B9C4201F364400520557 /* Assets.xcassets */,
 				BF74B9C6201F364400520557 /* LaunchScreen.storyboard */,
 				BF74B9C9201F364400520557 /* Info.plist */,
+				BFBBC81B20249C0A00FC2ED8 /* OperationSample-Bridging-Header.h */,
 			);
 			path = OperationSample;
 			sourceTree = "<group>";
@@ -71,9 +142,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BF74B9CC201F364400520557 /* Build configuration list for PBXNativeTarget "OperationSample" */;
 			buildPhases = (
+				F882D0B519E6782177ABD0EC /* [CP] Check Pods Manifest.lock */,
 				BF74B9B6201F364400520557 /* Sources */,
 				BF74B9B7201F364400520557 /* Frameworks */,
 				BF74B9B8201F364400520557 /* Resources */,
+				E08B2B2009FFB69017D07F33 /* [CP] Embed Pods Frameworks */,
+				C24149D7E9506D480AE057BD /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -96,6 +170,7 @@
 				TargetAttributes = {
 					BF74B9B9201F364400520557 = {
 						CreatedOnToolsVersion = 9.1;
+						LastSwiftMigration = 0910;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -131,13 +206,82 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		C24149D7E9506D480AE057BD /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OperationSample/Pods-OperationSample-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E08B2B2009FFB69017D07F33 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-OperationSample/Pods-OperationSample-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OperationSample/Pods-OperationSample-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F882D0B519E6782177ABD0EC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-OperationSample-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		BF74B9B6201F364400520557 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF4810F32057949100E281DF /* OSImageListFlowLayout.swift in Sources */,
+				BF01791E205FB4D90014201A /* OSLoadImageCacheOperation.swift in Sources */,
+				BFBBC81E20249C0B00FC2ED8 /* AFHTTPSessionManager+DataTask.m in Sources */,
+				BFBBC81A202493DC00FC2ED8 /* OSHTTPSessionOperation.swift in Sources */,
+				BF15586C202D8B9400FC0106 /* OSImageFiltrationOperation.swift in Sources */,
+				BF4810F120565D3800E281DF /* OSParallaxImageCollectionViewCell.swift in Sources */,
+				BF4810F52057D84200E281DF /* OSCacheFactory.swift in Sources */,
 				BF74B9C0201F364400520557 /* ViewController.swift in Sources */,
 				BF74B9BE201F364400520557 /* AppDelegate.swift in Sources */,
+				BF4810F7205BA01900E281DF /* OSNetworkImage.swift in Sources */,
+				BFBBC818202177D700FC2ED8 /* OSBaseAsynchronousOperation.swift in Sources */,
+				BF2699CD202AF0BF0021FD86 /* OSImageTableViewCell.swift in Sources */,
+				BFBBC8202024AEAB00FC2ED8 /* OSNetworkingOperationSession.swift in Sources */,
+				BF4810F9205BABEE00E281DF /* OSImageHTTPSessionOperation.swift in Sources */,
+				BF74B9D0201F421500520557 /* OSUrlSessionOperation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,14 +416,18 @@
 		};
 		BF74B9CD201F364400520557 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4316B78D4A69179555B80FF9 /* Pods-OperationSample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 56E8U8885M;
 				INFOPLIST_FILE = OperationSample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = VincentJiang.OperationSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "OperationSample/OperationSample-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -287,14 +435,17 @@
 		};
 		BF74B9CE201F364400520557 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1C139577E82C60478F1158E2 /* Pods-OperationSample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 56E8U8885M;
 				INFOPLIST_FILE = OperationSample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = VincentJiang.OperationSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "OperationSample/OperationSample-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
