@@ -15,7 +15,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         case 0:
             return 5
         case 1:
-            return 5
+            return 1
         default:
             return 1
         }
@@ -26,49 +26,50 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell:OSParallaxImageCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "parallaxCellIdentifier", for: indexPath) as!OSParallaxImageCollectionViewCell
         cell.lblScreenPlay.text = "Carbone Altered"
-        var networkImage:OSNetworkImage = OSNetworkImage()
-        let downloadImageOperation:OSImageHTTPSessionOperation = OSImageHTTPSessionOperation.httpOperation(manager: sessionManager,operationSession:operationsManager, httpMethod: .get, urlString: "http://renren.maoyun.tv/ftp/2018/0127/b_0d15d588d89fc58f2ecb6ad656b19ab9.jpg", parameters: nil, uploadProgress:{ (progres) in
-            //            print(progres)
-        }, downloadProgress:{ (progres) in
-            //            print(progres)
-        }, completionHandler: { (task, responseObject, result) in
-            switch result {
-            case .Success(_):
-
-                let image = responseObject as! UIImage
-            
-                
-            case let .Error(error):
-                let serverResponse = error.description
-                print(serverResponse)
+//        var networkImage:OSNetworkImage = OSNetworkImage()
+//        let downloadImageOperation:OSImageHTTPSessionOperation = OSImageHTTPSessionOperation.httpOperation(manager: sessionManager,operationSession:operationsManager, httpMethod: .get, urlString: "http://renren.maoyun.tv/ftp/2018/0127/b_0d15d588d89fc58f2ecb6ad656b19ab9.jpg", parameters: nil, uploadProgress:{ (progres) in
+//            //            print(progres)
+//        }, downloadProgress:{ (progres) in
+//            //            print(progres)
+//        }, completionHandler: { (task, responseObject, result) in
+//            switch result {
+//            case .Success(_):
+//                let image = responseObject as! UIImage
+//
+//            case let .Error(error):
+//                let serverResponse = error.description
+//                print(serverResponse)
+//            }
+//
+//        }) as! OSImageHTTPSessionOperation
+//
+//
+//        let blurOperation = OSImageFiltrationOperation.init(index: indexPath)
+//        let adapterOp = BlockOperation(block: {
+//            blurOperation.rawImage  = downloadImageOperation.networkImage
+//        })
+//        blurOperation.delegateImageView = cell.imgView
+        var scriptObject = ScriptObject(identifier: indexPath.description)
+        let scriptCreateOperation = ScriptListObjectCreateOperation(context: &scriptObject) {
+            DispatchQueue.main.async {
+                cell.imgView.animationImages = scriptObject.animFilterdImages
+                cell.imgView.animationDuration = 1.5;//设置动画时间
+                cell.imgView.animationRepeatCount = 1;//设置动画次数 0 表示无限
+                cell.imgView.startAnimating()
+                cell.imgView.image = scriptObject.previewRawImage
             }
-            
-        }) as! OSImageHTTPSessionOperation
-
-        
-        let blurOperation = OSImageFiltrationOperation.init(index: indexPath)
-        let adapterOp = BlockOperation(block: {
-            blurOperation.rawImage  = downloadImageOperation.networkImage
-        })
-        blurOperation.delegateImageView = cell.imgView
-        let updateImageOperation = BlockOperation.init(block: {
-            cell.imgView.animationImages = blurOperation.filteredImages
-            cell.imgView.animationDuration = 1.5;//设置动画时间
-            cell.imgView.animationRepeatCount = 1;//设置动画次数 0 表示无限
-            cell.imgView.startAnimating()
-            cell.imgView.image = blurOperation.rawImage
-        })
-        //                blurOperation.completionBlock
-        updateImageOperation.addDependency(blurOperation)
-        adapterOp.addDependency(downloadImageOperation)
-        blurOperation.addDependency(adapterOp)
-        if !downloadImageOperation.isFinished {
-            self.operationsManager.downloadQueue.addOperation(downloadImageOperation)
         }
-//    self.operationsManager.mainOperationsQueue.addOperations([downloadImageOperation,adapterOp,blurOperation], waitUntilFinished: false)
-        self.operationsManager.mainOperationsQueue.addOperation(adapterOp)
-        self.operationsManager.mainOperationsQueue.addOperation(blurOperation)
-        OperationQueue.main.addOperation(updateImageOperation)
+        scriptCreateOperation.userInitiated = true
+        self.operationsManager.dQueue.addOperation(scriptCreateOperation)
+//        updateImageOperation.addDependency(blurOperation)
+//        adapterOp.addDependency(downloadImageOperation)
+//        blurOperation.addDependency(adapterOp)
+//        if !downloadImageOperation.isFinished {
+//            self.operationsManager.downloadQueue.addOperation(downloadImageOperation)
+//        }
+//        self.operationsManager.mainOperationsQueue.addOperation(adapterOp)
+//        self.operationsManager.mainOperationsQueue.addOperation(blurOperation)
+//        OperationQueue.main.addOperation(updateImageOperation)
         return cell
     }
     
@@ -177,22 +178,22 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(imageCollectionView)
-        let operation = OSHTTPSessionOperation.httpOperation(manager: sessionManager, httpMethod: .get, urlString: "http://localhost:3000/scripts.json", parameters: nil, uploadProgress:{ (progres) in
-//            print(progres)
-        }, downloadProgress:{ (progres) in
-//            print(progres)
-        }, completionHandler: { (task, responseObject, result) in
-            switch result {
-            case let .Success(successResult):
-                let serverResponse = successResult
-//                print(serverResponse,responseObject ?? "NO DATA")
-            case let .Error(error):
-                let serverResponse = error.description
-                print(serverResponse)
-            }
-            
-        })
-        operationsManager.downloadQueue.addOperation(operation)
+//        let operation = OSHTTPSessionOperation.httpOperation(manager: sessionManager, httpMethod: .get, urlString: "http://localhost:3000/scripts.json", parameters: nil, uploadProgress:{ (progres) in
+////            print(progres)
+//        }, downloadProgress:{ (progres) in
+////            print(progres)
+//        }, completionHandler: { (task, responseObject, result) in
+//            switch result {
+//            case let .Success(successResult):
+//                let serverResponse = successResult
+////                print(serverResponse,responseObject ?? "NO DATA")
+//            case let .Error(error):
+//                let serverResponse = error.description
+//                print(serverResponse)
+//            }
+//            
+//        })
+//        operationsManager.downloadQueue.addOperation(operation)
         
         // Do any additional setup after loading the view, typically from a nib.
     }

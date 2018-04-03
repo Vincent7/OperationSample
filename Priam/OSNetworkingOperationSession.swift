@@ -23,15 +23,17 @@ class OSNetworkingOperationSession: NSObject {
     lazy var downloadQueue:OperationQueue = {
         var queue = OperationQueue()
         queue.name = "Download queue"
-//        queue.maxConcurrentOperationCount = NSOperationQueueDefaultMaxConcurrentOperationCount
+        queue.maxConcurrentOperationCount = OperationQueue.defaultMaxConcurrentOperationCount
         return queue
     }()
+    let dQueue = VJBaseOperationQueue()
+    
     
     lazy var mainOperationsInProgress = [NSIndexPath:Operation]()
     lazy var mainOperationsQueue:OperationQueue = {
         var queue = OperationQueue()
         queue.name = "Image Filtration queue"
-//        queue.maxConcurrentOperationCount = NSOperationQueueDefaultMaxConcurrentOperationCount
+        queue.maxConcurrentOperationCount = OperationQueue.defaultMaxConcurrentOperationCount
         return queue
     }()
     func addOperationToWaitingImageLoadQueue(operation:OSImageHTTPSessionOperation,imageIdentifier:String) -> Void {
