@@ -66,29 +66,30 @@ class DownloadScriptPreviewOperation: VJBaseGroupOperation {
     
     func downloadFinished(url: NSURL?, object: Any?, error: NSError?) {
         
-        if let localURL = url {
-            self.scriptItem.previewRawImage = UIImage(data: object as! Data)
-//            do {
-//                /*
-//                 If we already have a file at this location, just delete it.
-//                 Also, swallow the error, because we don't really care about it.
-//                 */
-//                //删除cache中的旧数据
-//                try FileManager.default.removeItem(at: cacheFile as URL)
-//            }
-//            catch { }
-//
-//            do {
-//                //添加cache中的新数据
-//                try FileManager.default.moveItem(at: localURL as URL, to: cacheFile as URL)
-//            }
-//            catch let error as NSError {
-//                aggregateError(error: error)
-//            }
-            
-        }
-        else if let error = error {
+        
+        if let error = error {
             aggregateError(error: error)
+        }
+        else if let localURL = url {
+            self.scriptItem.previewRawImage = UIImage(data: object as! Data)
+            //            do {
+            //                /*
+            //                 If we already have a file at this location, just delete it.
+            //                 Also, swallow the error, because we don't really care about it.
+            //                 */
+            //                //删除cache中的旧数据
+            //                try FileManager.default.removeItem(at: cacheFile as URL)
+            //            }
+            //            catch { }
+            //
+            //            do {
+            //                //添加cache中的新数据
+            //                try FileManager.default.moveItem(at: localURL as URL, to: cacheFile as URL)
+            //            }
+            //            catch let error as NSError {
+            //                aggregateError(error: error)
+            //            }
+            
         }
         else {
             // Do nothing, and the operation will automatically finish.

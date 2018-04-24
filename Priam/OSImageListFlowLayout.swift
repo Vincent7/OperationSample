@@ -14,16 +14,16 @@ class OSImageListFlowLayout: UICollectionViewFlowLayout {
         super.init()
         minimumInteritemSpacing = 10
         minimumLineSpacing = 10
+        sectionInset = UIEdgeInsetsMake(0, 0, 0, 0)
+        itemSize = UICollectionViewFlowLayoutAutomaticSize
+        estimatedItemSize = UICollectionViewFlowLayoutAutomaticSize
         
-        itemSize = CGSize.init(width: 375 - 20, height: 400)
-        sectionInset = UIEdgeInsetsMake(10, 10, 10, 10)
         dynamicAnimator = UIDynamicAnimator.init(collectionViewLayout: self)
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     override func prepare() {
         super.prepare()
         let contentSize:CGSize = self.collectionViewContentSize
@@ -36,10 +36,10 @@ class OSImageListFlowLayout: UICollectionViewFlowLayout {
                 behaviour.frequency = 1.0
                 dynamicAnimator?.addBehavior(behaviour)
             }
-            
+
         }
     }
-    
+
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         return dynamicAnimator?.items(in: rect) as? [UICollectionViewLayoutAttributes]
     }

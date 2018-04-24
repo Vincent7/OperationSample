@@ -14,11 +14,11 @@ class VJImageFilterOperation: VJBaseOperation {
 //    let rawImage:UIImage
     var filterInputImage:CIImage?
     
-    private let duration = 1.5
+//    private let duration = 1.5
     private let totalFrameCount = 20
     
-    var filteredImages: Array<UIImage>? = Array()
-    
+    var filteredImage: UIImage = UIImage()
+//    var filteredImages: Array<UIImage>? = Array()
     static let context:CIContext = CIContext.init(options: nil)
     
     func drawImageOffScreen(filter:CIFilter, frameIndex:Int) -> UIImage {
@@ -58,16 +58,22 @@ class VJImageFilterOperation: VJBaseOperation {
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             
             let strongSelf:VJImageFilterOperation! = self
-            
-            strongSelf.filterInputImage = CIImage.init(image: strongSelf.context.previewRawImage!)!
-            let filter = strongSelf.filterEffect(image: strongSelf.context.previewRawImage!)
-            assert(filter != nil, "Cannot create filter.")
-            for i in 0..<strongSelf.totalFrameCount-1 {
-                let frameImage = strongSelf.drawImageOffScreen(filter: filter!, frameIndex: i)
-                strongSelf.filteredImages?.append(frameImage)
+            guard let image:UIImage = strongSelf.context.previewRawImage else{
+                strongSelf.finish()
+                return 
             }
-            strongSelf.filteredImages?.append(strongSelf.context.previewRawImage!)
-            strongSelf.context.animFilterdImages = strongSelf.filteredImages!
+            strongSelf.filterInputImage = CIImage.init(image: image)!
+            let filter = strongSelf.filterEffect(image: image)
+            assert(filter != nil, "Cannot create filter.")
+            //            for i in 0..<strongSelf.totalFrameCount-1 {
+            //                let frameImage = strongSelf.drawImageOffScreen(filter: filter!, frameIndex: i)
+            //                strongSelf.filteredImages?.append(frameImage)
+            //            }
+            let frameImage = strongSelf.drawImageOffScreen(filter: filter!, frameIndex: 0)
+            strongSelf.filteredImage = frameImage
+            
+            //            strongSelf.filteredImages?.append(strongSelf.context.previewRawImage!)
+            strongSelf.context.animFilterdImage = strongSelf.filteredImage
             strongSelf.finish()
         }
         

@@ -23,7 +23,7 @@ struct VJBaseNetworkObserver: VJBaseOperationObserver {
         
     }
     
-    func operationDidFinish(operation: VJBaseOperation, errors: [NSError]) {
+    func operationDidFinish(operation: VJBaseOperation, errors: [Error]) {
         DispatchQueue.main.async {
             // Decrement the network indicator's "reference count".
             NetworkIndicatorController.sharedIndicatorController.networkActivityDidEnd()

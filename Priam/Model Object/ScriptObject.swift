@@ -14,7 +14,8 @@ class ScriptObject: NSObject {
     var scriptName:String = ""
     var previewImageUrl:URL?
     var previewRawImage:UIImage?
-    var animFilterdImages:[UIImage] = []
+    var animFilterdImage:UIImage?
+//    var animFilterdImages:[UIImage] = []
     
     var previewTitle:String = ""
     

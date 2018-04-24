@@ -10,11 +10,15 @@ import UIKit
 
 @objc protocol OperationQueueDelegate: NSObjectProtocol {
     @objc optional func operationQueue(operationQueue: VJBaseOperationQueue, willAddOperation operation: Operation)
-    @objc optional func operationQueue(operationQueue: VJBaseOperationQueue, operationDidFinish operation: Operation, withErrors errors: [NSError])
+    @objc optional func operationQueue(operationQueue: VJBaseOperationQueue, operationDidFinish operation: Operation, withErrors errors: [Error])
 }
 class VJBaseOperationQueue: OperationQueue {
     weak var delegate: OperationQueueDelegate?
-    
+    override init() {
+        
+        super.init()
+//        name = "working queue"
+    }
     override func addOperation(_ operation: Operation) {
         if let op = operation as? VJBaseOperation {
             // Set up a `BlockObserver` to invoke the `OperationQueueDelegate` method.

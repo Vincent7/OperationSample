@@ -20,6 +20,6 @@ protocol VJBaseOperationObserver {
      Invoked as an `Operation` finishes, along with any errors produced during
      execution (or readiness evaluation).
      */
-    func operationDidFinish(operation: VJBaseOperation, errors: [NSError])
+    func operationDidFinish(operation: VJBaseOperation, errors: [Error])
     
 }

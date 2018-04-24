@@ -13,7 +13,7 @@ class VJBaseGroupOperation: VJBaseOperation {
     private let startingOperation = BlockOperation(block: {})
     private let finishingOperation = BlockOperation(block: {})
     
-    private var aggregatedErrors = [NSError]()
+    private var aggregatedErrors = [Error]()
     
     convenience init(operations: Operation...) {
         self.init(operations: operations)
@@ -21,7 +21,7 @@ class VJBaseGroupOperation: VJBaseOperation {
     
     init(operations: [Operation]) {
         super.init()
-        
+        internalQueue.name = "Internal Queue"
         internalQueue.isSuspended = true
         internalQueue.delegate = self
         internalQueue.addOperation(startingOperation)
@@ -50,11 +50,11 @@ class VJBaseGroupOperation: VJBaseOperation {
      Errors aggregated through this method will be included in the final array
      of errors reported to observers and to the `finished(_:)` method.
      */
-    final func aggregateError(error: NSError) {
+    final func aggregateError(error: Error) {
         aggregatedErrors.append(error)
     }
     
-    func operationDidFinish(operation: Operation, withErrors errors: [NSError]) {
+    func operationDidFinish(operation: Operation, withErrors errors: [Error]) {
         // For use by subclassers.
     }
 }
@@ -82,8 +82,8 @@ extension VJBaseGroupOperation: OperationQueueDelegate {
             operation.addDependency(startingOperation)
         }
     }
-    
-    final func operationQueue(operationQueue: VJBaseOperationQueue, operationDidFinish operation: Operation, withErrors errors: [NSError]) {
+    final func operationQueue(operationQueue: VJBaseOperationQueue, operationDidFinish operation: Operation, withErrors errors: [Error]) {
+        
         aggregatedErrors.append(contentsOf: errors)
         
         if operation === finishingOperation {

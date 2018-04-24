@@ -9,13 +9,14 @@
 import UIKit
 
 struct VJBaseOperationBlockObserver: VJBaseOperationObserver {
+    
     // MARK: Properties
     
     private let startHandler: ((VJBaseOperation) -> Void)?
     private let produceHandler: ((VJBaseOperation, Operation) -> Void)?
-    private let finishHandler: ((VJBaseOperation, [NSError]) -> Void)?
+    private let finishHandler: ((VJBaseOperation, [Error]) -> Void)?
     
-    init(startHandler: ((VJBaseOperation) -> Void)? = nil, produceHandler: ((VJBaseOperation, Operation) -> Void)? = nil, finishHandler: ((VJBaseOperation, [NSError]) -> Void)? = nil) {
+    init(startHandler: ((VJBaseOperation) -> Void)? = nil, produceHandler: ((VJBaseOperation, Operation) -> Void)? = nil, finishHandler: ((VJBaseOperation, [Error]) -> Void)? = nil) {
         self.startHandler = startHandler
         self.produceHandler = produceHandler
         self.finishHandler = finishHandler
@@ -31,7 +32,7 @@ struct VJBaseOperationBlockObserver: VJBaseOperationObserver {
         produceHandler?(operation, newOperation)
     }
     
-    func operationDidFinish(operation: VJBaseOperation, errors: [NSError]) {
+    func operationDidFinish(operation: VJBaseOperation, errors: [Error]) {
         finishHandler?(operation, errors)
     }
 }

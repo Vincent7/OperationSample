@@ -255,8 +255,8 @@ class VJBaseOperation: Operation {
         finish()
     }
     
-    lazy private var _internalErrors:[NSError] = {
-        return [NSError]()
+    lazy private var _internalErrors:[Error] = {
+        return [Error]()
     }()
     func cancelWithError(error: NSError? = nil) {
         if let error = error {
@@ -296,7 +296,7 @@ class VJBaseOperation: Operation {
      operation has finished.
      */
     private var hasFinishedAlready = false
-    final func finish(errors: [NSError] = []) {
+    final func finish(errors: [Error] = []) {
         if !hasFinishedAlready {
             hasFinishedAlready = true
             state = .Finishing
@@ -318,7 +318,7 @@ class VJBaseOperation: Operation {
      this method to potentially inform the user about an error when trying to
      bring up the Core Data stack.
      */
-    func finished(errors: [NSError]) {
+    func finished(errors: [Error]) {
         // No op.
     }
     

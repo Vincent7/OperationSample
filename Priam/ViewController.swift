@@ -9,7 +9,9 @@
 import UIKit
 import AFNetworking
 import SnapKit
-class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UIScrollViewDelegate {
+class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UICollectionViewDataSource,UIScrollViewDelegate {
+    var selectedIndex:IndexPath = IndexPath.init()
+    var selectedItemPreviewFrame:CGRect = CGRect.init()
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch section {
         case 0:
@@ -20,59 +22,54 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             return 1
         }
     }
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1;
     }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell:OSParallaxImageCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "parallaxCellIdentifier", for: indexPath) as!OSParallaxImageCollectionViewCell
-        cell.lblScreenPlay.text = "Carbone Altered"
-//        var networkImage:OSNetworkImage = OSNetworkImage()
-//        let downloadImageOperation:OSImageHTTPSessionOperation = OSImageHTTPSessionOperation.httpOperation(manager: sessionManager,operationSession:operationsManager, httpMethod: .get, urlString: "http://renren.maoyun.tv/ftp/2018/0127/b_0d15d588d89fc58f2ecb6ad656b19ab9.jpg", parameters: nil, uploadProgress:{ (progres) in
-//            //            print(progres)
-//        }, downloadProgress:{ (progres) in
-//            //            print(progres)
-//        }, completionHandler: { (task, responseObject, result) in
-//            switch result {
-//            case .Success(_):
-//                let image = responseObject as! UIImage
-//
-//            case let .Error(error):
-//                let serverResponse = error.description
-//                print(serverResponse)
-//            }
-//
-//        }) as! OSImageHTTPSessionOperation
-//
-//
-//        let blurOperation = OSImageFiltrationOperation.init(index: indexPath)
-//        let adapterOp = BlockOperation(block: {
-//            blurOperation.rawImage  = downloadImageOperation.networkImage
-//        })
-//        blurOperation.delegateImageView = cell.imgView
+        cell.lblScreenPlay.text = "The series takes place over 350 years in the future, in the year 2384."
+        cell.delegate = self
+//        cell.lblScreenPlay.text = "The series takes."
         var scriptObject = ScriptObject(identifier: indexPath.description)
         let scriptCreateOperation = ScriptListObjectCreateOperation(context: &scriptObject) {
             DispatchQueue.main.async {
-                cell.imgView.animationImages = scriptObject.animFilterdImages
-                cell.imgView.animationDuration = 1.5;//设置动画时间
-                cell.imgView.animationRepeatCount = 1;//设置动画次数 0 表示无限
-                cell.imgView.startAnimating()
+//                cell.imgView.animationImages = scriptObject.animFilterdImages
+//                cell.imgView.animationDuration = 1.5;//设置动画时间
+//                cell.imgView.animationRepeatCount = 1;//设置动画次数 0 表示无限
+//                cell.imgView.startAnimating()
                 cell.imgView.image = scriptObject.previewRawImage
+                cell.previewImgView.image = scriptObject.animFilterdImage
+                let textColor:UIColor = (scriptObject.previewRawImage?.inverseColor())!
+                UIView.animate(withDuration: 2, animations: {
+                    cell.previewImgView.alpha = 0
+                    cell.imgView.alpha = 1
+                    cell.lblScreenPlay.textColor = textColor
+                })
             }
         }
         scriptCreateOperation.userInitiated = true
         self.operationsManager.dQueue.addOperation(scriptCreateOperation)
-//        updateImageOperation.addDependency(blurOperation)
-//        adapterOp.addDependency(downloadImageOperation)
-//        blurOperation.addDependency(adapterOp)
-//        if !downloadImageOperation.isFinished {
-//            self.operationsManager.downloadQueue.addOperation(downloadImageOperation)
-//        }
-//        self.operationsManager.mainOperationsQueue.addOperation(adapterOp)
-//        self.operationsManager.mainOperationsQueue.addOperation(blurOperation)
-//        OperationQueue.main.addOperation(updateImageOperation)
+
         return cell
     }
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell:OSParallaxImageCollectionViewCell = collectionView.cellForItem(at: indexPath) as! OSParallaxImageCollectionViewCell
+        selectedIndex = indexPath
+        selectedItemPreviewFrame = cell.frame
+        collectionFlowLayout.invalidateLayout()
+        UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .allowUserInteraction, animations: {
+            cell.frame = collectionView.bounds
+            cell.layoutIfNeeded()
+            collectionView.isScrollEnabled = false
+            cell.superview?.bringSubview(toFront: cell)
+            cell.expandCell()
+            
+        }, completion: { (bool) in
+            
+        })
+    }
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -147,14 +144,14 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     }()
     lazy var collectionFlowLayout:OSImageListFlowLayout = {
         let layout:OSImageListFlowLayout = OSImageListFlowLayout.init()
-        
         return layout
     }()
     lazy var imageCollectionView:UICollectionView = {
         let collectionView = UICollectionView.init(frame: CGRect.init(), collectionViewLayout: self.collectionFlowLayout)
         collectionView.register(OSParallaxImageCollectionViewCell.self, forCellWithReuseIdentifier: "parallaxCellIdentifier")
-        collectionView.delegate = self
+        
         collectionView.dataSource = self
+        collectionView.delegate = self
         return collectionView
     }()
     lazy var sessionManager:AFHTTPSessionManager = {
@@ -178,22 +175,6 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(imageCollectionView)
-//        let operation = OSHTTPSessionOperation.httpOperation(manager: sessionManager, httpMethod: .get, urlString: "http://localhost:3000/scripts.json", parameters: nil, uploadProgress:{ (progres) in
-////            print(progres)
-//        }, downloadProgress:{ (progres) in
-////            print(progres)
-//        }, completionHandler: { (task, responseObject, result) in
-//            switch result {
-//            case let .Success(successResult):
-//                let serverResponse = successResult
-////                print(serverResponse,responseObject ?? "NO DATA")
-//            case let .Error(error):
-//                let serverResponse = error.description
-//                print(serverResponse)
-//            }
-//            
-//        })
-//        operationsManager.downloadQueue.addOperation(operation)
         
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -226,4 +207,34 @@ extension ViewController {
 //    open func scrollViewDidScroll(_ scrollView: UIScrollView) {
 //        parallaxOffsetDidChange(scrollView.contentOffset.y)
 //    }
+}
+extension ViewController:UICollectionViewDelegateFlowLayout{
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if selectedIndex == indexPath {
+            return collectionView.bounds.size
+        }else{
+            return CGSize(width: collectionView.bounds.width - 40, height: 400)
+        }
+        
+    }
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+//        return UIEdgeInsetsMake(20, 0, 0, 0)
+//    }
+}
+extension ViewController:OSParallaxImageCollectionViewCellDelegate{
+    func didUnexpandCell(_ btnClose: UIButton,_ cell: OSParallaxImageCollectionViewCell) {
+        selectedIndex = IndexPath.init()
+        collectionFlowLayout.invalidateLayout()
+        UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .allowUserInteraction, animations: {
+            cell.frame = self.selectedItemPreviewFrame
+            cell.layoutIfNeeded()
+            //            self.imageCollectionView.collectionViewLayout.invalidateLayout()
+            self.imageCollectionView.isScrollEnabled = true
+            self.selectedItemPreviewFrame = CGRect.init()
+        },completion:{ (bool) in
+            
+        })
+    }
+
 }
