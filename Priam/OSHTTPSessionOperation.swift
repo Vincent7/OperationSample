@@ -13,6 +13,7 @@ class OSHTTPSessionOperation: OSBaseAsynchronousOperation {
     var manager:AFHTTPSessionManager?
     var task:URLSessionTask?
     
+    
     enum HTTPMethod: String {
         case get = "GET"
         case post = "POST"

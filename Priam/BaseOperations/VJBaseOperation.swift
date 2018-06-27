@@ -10,26 +10,6 @@ import UIKit
 
 class VJBaseOperation: Operation {
     
-//    class func keyPathsForValuesAffectingIsReady() -> Set<String> {
-//        return ["state"]
-//    }
-//
-//    class func keyPathsForValuesAffectingIsExecuting() -> Set<String> {
-//        return ["state"]
-//    }
-//
-//    class func keyPathsForValuesAffectingIsFinished() -> Set<String> {
-//        return ["state"]
-//    }
-//    @objc dynamic class func keyPathsForValuesAffectingIsReady() -> Set<String> {
-//        return ["state"]
-//    }
-//    @objc dynamic class func keyPathsForValuesAffectingIsExecuting() -> Set<String> {
-//        return ["state"]
-//    }
-//    @objc dynamic class func keyPathsForValuesAffectingIsFinished() -> Set<String> {
-//        return ["state"]
-//    }
     override class func keyPathsForValuesAffectingValue(forKey key: String) -> Set<String> {
         if key == "isFinished" || key == "isExecuting" || key == "isReady" {
             return ["state"]

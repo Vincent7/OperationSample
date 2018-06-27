@@ -10,13 +10,13 @@ import UIKit
 import AFNetworking
 
 class OSImageHTTPSessionOperation: OSHTTPSessionOperation {
-    weak var operationSession:OSNetworkingOperationSession?
+    weak var operationSession:OSOperationSession?
     
     var networkImage:UIImage?
     var imageLoadStatus:CacheStatus = .haveNoCached
 
     class func httpOperation(manager:AFHTTPSessionManager,
-                             operationSession:OSNetworkingOperationSession,
+                             operationSession:OSOperationSession,
                              httpMethod:HTTPMethod,
                              urlString:String,
                              parameters:Dictionary<String, String>?,
@@ -51,7 +51,7 @@ class OSImageHTTPSessionOperation: OSHTTPSessionOperation {
                                                 let image = UIImage(data: responseObject as! Data)
                                                 
                                                 
-                                                OSNetworkImage.saveCache(identifier: urlString, object: image!)
+                                                _ = OSNetworkImage.saveCache(identifier: urlString, object: image!)
                                                 completionHandler(task,image,.Success("Download Done"))
                                                 operation.networkImage = image
                                                 operation.imageLoadStatus = .alreadyCached

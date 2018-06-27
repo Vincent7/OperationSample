@@ -9,9 +9,14 @@
 import UIKit
 import AFNetworking
 import SnapKit
-class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UICollectionViewDataSource,UIScrollViewDelegate {
+class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UICollectionViewDataSource,UIScrollViewDelegate,UIViewControllerTransitioningDelegate,VJCollectionCellTransitionProtocol{
+    var sourceCellFrame: CGRect?
+    var sourceView: UIView?
+    var copyView: UIView?
+    var collectionView: UICollectionView?
+    
     var selectedIndex:IndexPath = IndexPath.init()
-    var selectedItemPreviewFrame:CGRect = CGRect.init()
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch section {
         case 0:
@@ -29,23 +34,19 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell:OSParallaxImageCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "parallaxCellIdentifier", for: indexPath) as!OSParallaxImageCollectionViewCell
-        cell.lblScreenPlay.text = "The series takes place over 350 years in the future, in the year 2384."
-        cell.delegate = self
-//        cell.lblScreenPlay.text = "The series takes."
+        
+        cell.previewImageTitleView.lblTitle.text = "The series takes place over 350 years in the future, in the year 2384."
+        
         var scriptObject = ScriptObject(identifier: indexPath.description)
         let scriptCreateOperation = ScriptListObjectCreateOperation(context: &scriptObject) {
             DispatchQueue.main.async {
-//                cell.imgView.animationImages = scriptObject.animFilterdImages
-//                cell.imgView.animationDuration = 1.5;//设置动画时间
-//                cell.imgView.animationRepeatCount = 1;//设置动画次数 0 表示无限
-//                cell.imgView.startAnimating()
-                cell.imgView.image = scriptObject.previewRawImage
-                cell.previewImgView.image = scriptObject.animFilterdImage
+                cell.previewImageTitleView.originImgView.image = scriptObject.previewRawImage
+                cell.previewImageTitleView.previewImgView.image = scriptObject.animFilterdImage
                 let textColor:UIColor = (scriptObject.previewRawImage?.inverseColor())!
                 UIView.animate(withDuration: 2, animations: {
-                    cell.previewImgView.alpha = 0
-                    cell.imgView.alpha = 1
-                    cell.lblScreenPlay.textColor = textColor
+                    cell.previewImageTitleView.previewImgView.alpha = 0
+                    cell.previewImageTitleView.originImgView.alpha = 1
+                    cell.previewImageTitleView.lblTitle.textColor = textColor
                 })
             }
         }
@@ -54,21 +55,25 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
 
         return cell
     }
+    
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell:OSParallaxImageCollectionViewCell = collectionView.cellForItem(at: indexPath) as! OSParallaxImageCollectionViewCell
         selectedIndex = indexPath
-        selectedItemPreviewFrame = cell.frame
-        collectionFlowLayout.invalidateLayout()
-        UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .allowUserInteraction, animations: {
-            cell.frame = collectionView.bounds
-            cell.layoutIfNeeded()
-            collectionView.isScrollEnabled = false
-            cell.superview?.bringSubview(toFront: cell)
-            cell.expandCell()
-            
-        }, completion: { (bool) in
-            
-        })
+        let cell:OSParallaxImageCollectionViewCell = collectionView.cellForItem(at: indexPath) as! OSParallaxImageCollectionViewCell
+        sourceView = cell.previewImageTitleView
+        copyView = cell.previewImageTitleView.createPreviewCopy(state: .Folded)
+        sourceCellFrame = collectionView.convert(cell.frame, to: nil)
+        
+//        cell.previewImageTitleView.unfoldView()
+        let scriptViewController = VJScriptDetailViewController()
+        scriptViewController.transitioningDelegate = self
+        scriptViewController.collectionCellTransitionAnimation = collectionCellTransitionAnimation
+        scriptViewController.imagePreviewView = cell.previewImageTitleView.createPreviewCopy(state: .Unfolded)
+        scriptViewController.imagePreviewView?.resetLabelWidth(width: cell.frame.width-40)
+        
+        present(scriptViewController, animated:true) {
+//            cell.isHidden = true
+        }
     }
     
     
@@ -152,6 +157,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         
         collectionView.dataSource = self
         collectionView.delegate = self
+        self.collectionView = collectionView
         return collectionView
     }()
     lazy var sessionManager:AFHTTPSessionManager = {
@@ -170,12 +176,12 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         sessionManager.requestSerializer = AFHTTPRequestSerializer.init()
         return sessionManager
     }()
-    let operationsManager = OSNetworkingOperationSession.sharedInstance
+    let operationsManager = OSOperationSession.sharedInstance
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(imageCollectionView)
-        
+//        view.backgroundColor = .white
         // Do any additional setup after loading the view, typically from a nib.
     }
     
@@ -190,14 +196,38 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             make.edges.equalTo(view).inset(UIEdgeInsetsMake(0, 0, 0, 0))
         }
         collectionFlowLayout.invalidateLayout()
+        
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        parallaxOffsetDidChange(imageCollectionView.contentOffset.y)
+    }
+    lazy var collectionCellTransitionAnimation:VJCollectionCellTransitionAnimation = {
+        let animation = VJCollectionCellTransitionAnimation()
+        
+        return animation
+    }()
+    
+//    lazy var scriptViewController:VJScriptDetailViewController = {
+//        let vc = VJScriptDetailViewController()
+//        vc.transitioningDelegate = self
+//        vc.collectionCellTransitionAnimation = collectionCellTransitionAnimation
+//        return vc
+//    }()
+    //UIViewControllerTransitioningDelegate
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return collectionCellTransitionAnimation
+    }
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return collectionCellTransitionAnimation
     }
 }
 // MARK: ScroolViewDelegate
 extension ViewController {
     
     fileprivate func parallaxOffsetDidChange(_: CGFloat) {
-        _ = imageCollectionView.visibleCells
-            .forEach { if case let cell as OSParallaxImageCollectionViewCell = $0 { cell.parallaxOffset(imageCollectionView) } }
+//        _ = imageCollectionView.visibleCells
+//            .forEach { if case let cell as OSParallaxImageCollectionViewCell = $0 { cell.parallaxOffset(imageCollectionView) } }
     }
 }
 extension ViewController {
@@ -211,30 +241,19 @@ extension ViewController {
 extension ViewController:UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if selectedIndex == indexPath {
-            return collectionView.bounds.size
-        }else{
-            return CGSize(width: collectionView.bounds.width - 40, height: 400)
-        }
-        
-    }
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-//        return UIEdgeInsetsMake(20, 0, 0, 0)
-//    }
-}
-extension ViewController:OSParallaxImageCollectionViewCellDelegate{
-    func didUnexpandCell(_ btnClose: UIButton,_ cell: OSParallaxImageCollectionViewCell) {
-        selectedIndex = IndexPath.init()
-        collectionFlowLayout.invalidateLayout()
-        UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .allowUserInteraction, animations: {
-            cell.frame = self.selectedItemPreviewFrame
-            cell.layoutIfNeeded()
-            //            self.imageCollectionView.collectionViewLayout.invalidateLayout()
-            self.imageCollectionView.isScrollEnabled = true
-            self.selectedItemPreviewFrame = CGRect.init()
-        },completion:{ (bool) in
-            
-        })
+        return CGSize(width: collectionView.bounds.width - 32, height: 400)
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+

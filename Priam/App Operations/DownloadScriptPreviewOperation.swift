@@ -70,7 +70,7 @@ class DownloadScriptPreviewOperation: VJBaseGroupOperation {
         if let error = error {
             aggregateError(error: error)
         }
-        else if let localURL = url {
+        else if url != nil {
             self.scriptItem.previewRawImage = UIImage(data: object as! Data)
             //            do {
             //                /*

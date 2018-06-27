@@ -11,10 +11,10 @@ import UIKit
 //    func didOperationFinish
 //
 //}
-class OSNetworkingOperationSession: NSObject {
+class OSOperationSession: NSObject {
     
-    static let sharedInstance:OSNetworkingOperationSession = {
-        let instance = OSNetworkingOperationSession()
+    static let sharedInstance:OSOperationSession = {
+        let instance = OSOperationSession()
         return instance
     }()
     lazy var waitingLoadOperations = [String:Array<OSImageHTTPSessionOperation>]()
@@ -22,7 +22,7 @@ class OSNetworkingOperationSession: NSObject {
     lazy var downloadsInProgress = [NSIndexPath:Operation]()
     lazy var downloadQueue:OperationQueue = {
         var queue = OperationQueue()
-        queue.name = "Download queue"
+        queue.name = "DownloadQueue"
         queue.maxConcurrentOperationCount = OperationQueue.defaultMaxConcurrentOperationCount
         return queue
     }()
@@ -32,10 +32,11 @@ class OSNetworkingOperationSession: NSObject {
     lazy var mainOperationsInProgress = [NSIndexPath:Operation]()
     lazy var mainOperationsQueue:OperationQueue = {
         var queue = OperationQueue()
-        queue.name = "Image Filtration queue"
+        queue.name = "ImageFiltrationQueue"
         queue.maxConcurrentOperationCount = OperationQueue.defaultMaxConcurrentOperationCount
         return queue
     }()
+    //如果Operation中的请求内容被标记为正在被请求，则不发生新的请求，而是让该Operation待命到该内容请求完毕
     func addOperationToWaitingImageLoadQueue(operation:OSImageHTTPSessionOperation,imageIdentifier:String) -> Void {
         lock.lock()
         var operations:Array<OSImageHTTPSessionOperation> = self.waitingLoadOperations[imageIdentifier] ?? Array<OSImageHTTPSessionOperation>()
@@ -43,9 +44,8 @@ class OSNetworkingOperationSession: NSObject {
         self.waitingLoadOperations[imageIdentifier] = operations
         lock.unlock()
     }
+    //当一个内容请求完毕时，检查是否有多个Operation依赖该内容，并分发内容至这些Operation
     func updateWaitingLoadOperations(imageIdentifier:String, operationStatus:CacheStatus) -> UIImage {
-//        NSLock.lock()
-        
         lock.lock()
         var cacheImage:UIImage!
         if operationStatus == .alreadyCached {
@@ -58,8 +58,5 @@ class OSNetworkingOperationSession: NSObject {
         }
         lock.unlock()
         return cacheImage
-        
-        
-//        NSLock.unlock()
     }
 }

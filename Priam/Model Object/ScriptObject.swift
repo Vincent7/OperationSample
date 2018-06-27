@@ -7,12 +7,25 @@
 //
 
 import UIKit
-
-class ScriptObject: NSObject {
+protocol ContextImageFilterable {
+    var previewRawImage:UIImage? {get}
+    var animFilterdImage:UIImage? {get set}
+}
+class ImageFilterableObject:NSObject,ContextImageFilterable{
+    var previewRawImage:UIImage?
+    var animFilterdImage:UIImage?
+    
+    init(rawImage:UIImage) {
+        self.previewRawImage = rawImage
+        super.init()
+    }
+}
+class ScriptObject: NSObject,ContextImageFilterable {
     var identifier:String!
     
     var scriptName:String = ""
     var previewImageUrl:URL?
+    
     var previewRawImage:UIImage?
     var animFilterdImage:UIImage?
 //    var animFilterdImages:[UIImage] = []

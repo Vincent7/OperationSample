@@ -9,7 +9,8 @@
 import UIKit
 
 class VJImageFilterOperation: VJBaseOperation {
-    var context:ScriptObject
+    
+    var context:ContextImageFilterable
     
 //    let rawImage:UIImage
     var filterInputImage:CIImage?
@@ -46,11 +47,10 @@ class VJImageFilterOperation: VJBaseOperation {
         
     }
     
-    init(context:inout ScriptObject) {
+    init(context:inout ContextImageFilterable, completion : (() -> ())?) {
         self.context = context
-//        self.rawImage = self.context.previewRawImage!
-        
         super.init()
+        self.completionBlock = completion
     }
     
     override func execute() {
@@ -69,7 +69,7 @@ class VJImageFilterOperation: VJBaseOperation {
             //                let frameImage = strongSelf.drawImageOffScreen(filter: filter!, frameIndex: i)
             //                strongSelf.filteredImages?.append(frameImage)
             //            }
-            let frameImage = strongSelf.drawImageOffScreen(filter: filter!, frameIndex: 0)
+            let frameImage = strongSelf.drawImageOffScreen(filter: filter!, frameIndex: 5)
             strongSelf.filteredImage = frameImage
             
             //            strongSelf.filteredImages?.append(strongSelf.context.previewRawImage!)
@@ -79,5 +79,7 @@ class VJImageFilterOperation: VJBaseOperation {
         
         
     }
-    
+    override func finished(errors: [Error]) {
+        self.completionBlock!()
+    }
 }

@@ -23,7 +23,11 @@ class ScriptListObjectCreateOperation: VJBaseGroupOperation {
          3. The operation to invoke the completion handler
          */
         downloadOperation = DownloadScriptPreviewOperation(context: &context)
-        filterdImageOperation = VJImageFilterOperation(context:&context)
+//        var imageFilterableObject:ImageFilterableObject = ImageFilterableObject()
+        var tempContext:ContextImageFilterable = context as ContextImageFilterable
+        filterdImageOperation = VJImageFilterOperation(context: &tempContext){ [context] in
+            context.animFilterdImage = tempContext.animFilterdImage
+        }
         
         let finishOperation = BlockOperation(block: completionHandler)
         

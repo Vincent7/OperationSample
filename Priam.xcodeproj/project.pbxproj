@@ -11,6 +11,7 @@
 		8D0957B079AF1BE5CA207CB9 /* Pods_Priam.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D82DB6C36A268EE8BCC6984 /* Pods_Priam.framework */; };
 		BF01791E205FB4D90014201A /* OSLoadImageCacheOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF01791D205FB4D90014201A /* OSLoadImageCacheOperation.swift */; };
 		BF15586C202D8B9400FC0106 /* OSImageFiltrationOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF15586B202D8B9400FC0106 /* OSImageFiltrationOperation.swift */; };
+		BF1B16202091D2D400DF1197 /* UIView+Copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1B161F2091D2D400DF1197 /* UIView+Copy.swift */; };
 		BF2699CD202AF0BF0021FD86 /* OSImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2699CC202AF0BF0021FD86 /* OSImageTableViewCell.swift */; };
 		BF327015206B7106001EEA36 /* VJBaseBlockOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF327014206B7106001EEA36 /* VJBaseBlockOperation.swift */; };
 		BF327017206B859C001EEA36 /* VJImageFilterOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF327016206B859C001EEA36 /* VJImageFilterOperation.swift */; };
@@ -24,7 +25,10 @@
 		BF4810F52057D84200E281DF /* OSCacheFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4810F42057D84200E281DF /* OSCacheFactory.swift */; };
 		BF4810F7205BA01900E281DF /* OSNetworkImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4810F6205BA01800E281DF /* OSNetworkImage.swift */; };
 		BF4810F9205BABEE00E281DF /* OSImageHTTPSessionOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4810F8205BABEE00E281DF /* OSImageHTTPSessionOperation.swift */; };
+		BF538C2020C52FFE004E4F44 /* PriamAsyncLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF538C1F20C52FFE004E4F44 /* PriamAsyncLayer.swift */; };
 		BF5C8F1C208F205C00A8B446 /* VJCollectionCellTransitionAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5C8F1B208F205C00A8B446 /* VJCollectionCellTransitionAnimation.swift */; };
+		BF5C8F1E208F235300A8B446 /* VJScriptDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5C8F1D208F235300A8B446 /* VJScriptDetailViewController.swift */; };
+		BF5C8F2020906AF000A8B446 /* VJPreviewImageTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5C8F1F20906AF000A8B446 /* VJPreviewImageTitleView.swift */; };
 		BF74B9BE201F364400520557 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF74B9BD201F364400520557 /* AppDelegate.swift */; };
 		BF74B9C0201F364400520557 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF74B9BF201F364400520557 /* ViewController.swift */; };
 		BF74B9C3201F364400520557 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF74B9C1201F364400520557 /* Main.storyboard */; };
@@ -38,7 +42,7 @@
 		BFBBC818202177D700FC2ED8 /* OSBaseAsynchronousOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBBC817202177D700FC2ED8 /* OSBaseAsynchronousOperation.swift */; };
 		BFBBC81A202493DC00FC2ED8 /* OSHTTPSessionOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBBC819202493DC00FC2ED8 /* OSHTTPSessionOperation.swift */; };
 		BFBBC81E20249C0B00FC2ED8 /* AFHTTPSessionManager+DataTask.m in Sources */ = {isa = PBXBuildFile; fileRef = BFBBC81D20249C0B00FC2ED8 /* AFHTTPSessionManager+DataTask.m */; };
-		BFBBC8202024AEAB00FC2ED8 /* OSNetworkingOperationSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBBC81F2024AEAB00FC2ED8 /* OSNetworkingOperationSession.swift */; };
+		BFBBC8202024AEAB00FC2ED8 /* OSOperationSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBBC81F2024AEAB00FC2ED8 /* OSOperationSession.swift */; };
 		BFCDAD4220888B1500435B8D /* UIImage+AverageColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCDAD4120888B1500435B8D /* UIImage+AverageColor.swift */; };
 		BFD7F697206A348C004B7CEB /* VJBaseOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD7F696206A348C004B7CEB /* VJBaseOperation.swift */; };
 		BFD7F69E206A390A004B7CEB /* NSLock+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD7F69D206A390A004B7CEB /* NSLock+Operations.swift */; };
@@ -57,6 +61,7 @@
 		9D82DB6C36A268EE8BCC6984 /* Pods_Priam.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Priam.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF01791D205FB4D90014201A /* OSLoadImageCacheOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSLoadImageCacheOperation.swift; sourceTree = "<group>"; };
 		BF15586B202D8B9400FC0106 /* OSImageFiltrationOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSImageFiltrationOperation.swift; sourceTree = "<group>"; };
+		BF1B161F2091D2D400DF1197 /* UIView+Copy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Copy.swift"; sourceTree = "<group>"; };
 		BF2699CC202AF0BF0021FD86 /* OSImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSImageTableViewCell.swift; sourceTree = "<group>"; };
 		BF327014206B7106001EEA36 /* VJBaseBlockOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VJBaseBlockOperation.swift; sourceTree = "<group>"; };
 		BF327016206B859C001EEA36 /* VJImageFilterOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VJImageFilterOperation.swift; sourceTree = "<group>"; };
@@ -70,7 +75,10 @@
 		BF4810F42057D84200E281DF /* OSCacheFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSCacheFactory.swift; sourceTree = "<group>"; };
 		BF4810F6205BA01800E281DF /* OSNetworkImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSNetworkImage.swift; sourceTree = "<group>"; };
 		BF4810F8205BABEE00E281DF /* OSImageHTTPSessionOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSImageHTTPSessionOperation.swift; sourceTree = "<group>"; };
+		BF538C1F20C52FFE004E4F44 /* PriamAsyncLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriamAsyncLayer.swift; sourceTree = "<group>"; };
 		BF5C8F1B208F205C00A8B446 /* VJCollectionCellTransitionAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VJCollectionCellTransitionAnimation.swift; sourceTree = "<group>"; };
+		BF5C8F1D208F235300A8B446 /* VJScriptDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VJScriptDetailViewController.swift; sourceTree = "<group>"; };
+		BF5C8F1F20906AF000A8B446 /* VJPreviewImageTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VJPreviewImageTitleView.swift; sourceTree = "<group>"; };
 		BF74B9BA201F364400520557 /* Priam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Priam.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF74B9BD201F364400520557 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BF74B9BF201F364400520557 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -88,7 +96,7 @@
 		BFBBC81B20249C0A00FC2ED8 /* Priam-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Priam-Bridging-Header.h"; sourceTree = "<group>"; };
 		BFBBC81C20249C0B00FC2ED8 /* AFHTTPSessionManager+DataTask.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AFHTTPSessionManager+DataTask.h"; sourceTree = "<group>"; };
 		BFBBC81D20249C0B00FC2ED8 /* AFHTTPSessionManager+DataTask.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AFHTTPSessionManager+DataTask.m"; sourceTree = "<group>"; };
-		BFBBC81F2024AEAB00FC2ED8 /* OSNetworkingOperationSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSNetworkingOperationSession.swift; sourceTree = "<group>"; };
+		BFBBC81F2024AEAB00FC2ED8 /* OSOperationSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSOperationSession.swift; sourceTree = "<group>"; };
 		BFCDAD4120888B1500435B8D /* UIImage+AverageColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+AverageColor.swift"; sourceTree = "<group>"; };
 		BFD7F696206A348C004B7CEB /* VJBaseOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VJBaseOperation.swift; sourceTree = "<group>"; };
 		BFD7F69D206A390A004B7CEB /* NSLock+Operations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLock+Operations.swift"; sourceTree = "<group>"; };
@@ -146,6 +154,14 @@
 			path = OperationsQueue;
 			sourceTree = "<group>";
 		};
+		BF538C1E20C52F66004E4F44 /* testAsyncLayer */ = {
+			isa = PBXGroup;
+			children = (
+				BF538C1F20C52FFE004E4F44 /* PriamAsyncLayer.swift */,
+			);
+			path = testAsyncLayer;
+			sourceTree = "<group>";
+		};
 		BF5C8F1A208F1FD800A8B446 /* CollectionViewCell Expand Transition Animation */ = {
 			isa = PBXGroup;
 			children = (
@@ -185,6 +201,8 @@
 				BFD7F695206A3450004B7CEB /* BaseOperations */,
 				BF74B9BD201F364400520557 /* AppDelegate.swift */,
 				BF74B9BF201F364400520557 /* ViewController.swift */,
+				BF5C8F1D208F235300A8B446 /* VJScriptDetailViewController.swift */,
+				BF538C1E20C52F66004E4F44 /* testAsyncLayer */,
 				BF5C8F1A208F1FD800A8B446 /* CollectionViewCell Expand Transition Animation */,
 				BFBBC81C20249C0B00FC2ED8 /* AFHTTPSessionManager+DataTask.h */,
 				BFBBC81D20249C0B00FC2ED8 /* AFHTTPSessionManager+DataTask.m */,
@@ -194,9 +212,10 @@
 				BFBBC817202177D700FC2ED8 /* OSBaseAsynchronousOperation.swift */,
 				BF15586B202D8B9400FC0106 /* OSImageFiltrationOperation.swift */,
 				BF01791D205FB4D90014201A /* OSLoadImageCacheOperation.swift */,
-				BFBBC81F2024AEAB00FC2ED8 /* OSNetworkingOperationSession.swift */,
+				BFBBC81F2024AEAB00FC2ED8 /* OSOperationSession.swift */,
 				BF2699CC202AF0BF0021FD86 /* OSImageTableViewCell.swift */,
 				BF4810F020565D3800E281DF /* OSParallaxImageCollectionViewCell.swift */,
+				BF5C8F1F20906AF000A8B446 /* VJPreviewImageTitleView.swift */,
 				BF4810F22057949100E281DF /* OSImageListFlowLayout.swift */,
 				BF4810F42057D84200E281DF /* OSCacheFactory.swift */,
 				BF4810F6205BA01800E281DF /* OSNetworkImage.swift */,
@@ -261,6 +280,7 @@
 				BFD7F69D206A390A004B7CEB /* NSLock+Operations.swift */,
 				BF327021206BA8F9001EEA36 /* Operation+VJBaseOperation.swift */,
 				BFCDAD4120888B1500435B8D /* UIImage+AverageColor.swift */,
+				BF1B161F2091D2D400DF1197 /* UIView+Copy.swift */,
 			);
 			path = "Convenience Extensions";
 			sourceTree = "<group>";
@@ -413,6 +433,7 @@
 				BF4810F32057949100E281DF /* OSImageListFlowLayout.swift in Sources */,
 				BF01791E205FB4D90014201A /* OSLoadImageCacheOperation.swift in Sources */,
 				BF327015206B7106001EEA36 /* VJBaseBlockOperation.swift in Sources */,
+				BF5C8F2020906AF000A8B446 /* VJPreviewImageTitleView.swift in Sources */,
 				BFEA54E5206CFF4E002DE225 /* DownloadScriptPreviewOperation.swift in Sources */,
 				BFD7F6A0206A3B71004B7CEB /* VJBaseOperationCondition.swift in Sources */,
 				BFBBC81E20249C0B00FC2ED8 /* AFHTTPSessionManager+DataTask.m in Sources */,
@@ -427,10 +448,13 @@
 				BF32701E206B89F8001EEA36 /* VJBaseOperationBlockObserver.swift in Sources */,
 				BF327017206B859C001EEA36 /* VJImageFilterOperation.swift in Sources */,
 				BF327019206B86E8001EEA36 /* VJBaseGroupOperation.swift in Sources */,
+				BF1B16202091D2D400DF1197 /* UIView+Copy.swift in Sources */,
 				BF327022206BA8F9001EEA36 /* Operation+VJBaseOperation.swift in Sources */,
 				BF74B9C0201F364400520557 /* ViewController.swift in Sources */,
+				BF538C2020C52FFE004E4F44 /* PriamAsyncLayer.swift in Sources */,
 				BF9DDC15206E46EC00952E12 /* ScriptObject.swift in Sources */,
 				BF74B9BE201F364400520557 /* AppDelegate.swift in Sources */,
+				BF5C8F1E208F235300A8B446 /* VJScriptDetailViewController.swift in Sources */,
 				BF4810F7205BA01900E281DF /* OSNetworkImage.swift in Sources */,
 				BFBBC818202177D700FC2ED8 /* OSBaseAsynchronousOperation.swift in Sources */,
 				BF5C8F1C208F205C00A8B446 /* VJCollectionCellTransitionAnimation.swift in Sources */,
@@ -438,7 +462,7 @@
 				BFCDAD4220888B1500435B8D /* UIImage+AverageColor.swift in Sources */,
 				BF9DDC12206E3EB300952E12 /* Cacheable.swift in Sources */,
 				BFD7F697206A348C004B7CEB /* VJBaseOperation.swift in Sources */,
-				BFBBC8202024AEAB00FC2ED8 /* OSNetworkingOperationSession.swift in Sources */,
+				BFBBC8202024AEAB00FC2ED8 /* OSOperationSession.swift in Sources */,
 				BF4810F9205BABEE00E281DF /* OSImageHTTPSessionOperation.swift in Sources */,
 				BFEA54E3206CFC26002DE225 /* ScriptListObjectCreateOperation.swift in Sources */,
 				BF74B9D0201F421500520557 /* OSUrlSessionOperation.swift in Sources */,
@@ -583,6 +607,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 56E8U8885M;
 				INFOPLIST_FILE = Priam/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = VincentJiang.Priam;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -602,6 +627,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 56E8U8885M;
 				INFOPLIST_FILE = Priam/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = VincentJiang.Priam;
 				PRODUCT_NAME = "$(TARGET_NAME)";
